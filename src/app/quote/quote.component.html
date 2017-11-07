@@ -1,0 +1,18 @@
+<h1>Add a Quote</h1>
+
+<div class = 'errormessage'>
+<form class='i_b' (submit)='onSubmit()' name='formData' #formData="ngForm">
+  Quote<br><textarea name="content" required minlength="4" cols="40" rows="5" [(ngModel)]="quote.content" #content='ngModel'></textarea><br>
+  Author<input type="text" name="author" required minlength="1"   [(ngModel)]="quote.author" #author='ngModel' ><br>
+  <input [disabled] = 'formData.invalid' type="submit" value='submit'>
+</form>
+</div>
+
+<div class = 'errormessage red'>
+  <br>
+  <p *ngIf="content.invalid">Quote is required</p>
+  <p *ngIf="author.invalid">Author is required</p>
+  
+</div>
+<app-quote-list [myQuotes] ='quoteslist' (voteEventEmitter)='update()'></app-quote-list>
+
